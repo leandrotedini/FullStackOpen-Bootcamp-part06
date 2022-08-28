@@ -2,6 +2,7 @@
 
 # dependencies
 /unicafe-redux/node_modules
+/redux-anecdotes/node_modules
 /.pnp
 .pnp.js
 
