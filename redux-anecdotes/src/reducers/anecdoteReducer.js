@@ -32,6 +32,24 @@ const orderByVotes = (anecdotes = []) => {
   })
 }
 
+export function createAnecdote (content) {
+  return {
+    type: 'NEW_ANECDOTE',
+    data:{
+      content
+    }
+  }
+}
+
+export function incrementVotes (id) {
+  return {
+    type: 'VOTE',
+    data:{
+      id
+    }
+  }
+}
+
 const reducer = (state = orderByVotes(initialState), action) => {
 
   switch (action.type) {

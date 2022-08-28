@@ -1,4 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { incrementVotes } from '../reducers/anecdoteReducer'
+
 
 const Anecdotes = () => {
 
@@ -6,12 +8,7 @@ const Anecdotes = () => {
   const dispatch = useDispatch()
 
   const vote = (id) => {
-    dispatch({
-      type: 'VOTE',
-      data:{
-        id
-      }
-    })
+    dispatch(incrementVotes(id))
   }
 
   return(
