@@ -4,7 +4,6 @@ import { showNotification, cleanNotification } from '../reducers/notificationRed
 
 
 const AnecdotesForm = () => {
-
   const dispatch = useDispatch()
 
   const addAnecdote = (event) => {

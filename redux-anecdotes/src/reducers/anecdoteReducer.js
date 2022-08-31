@@ -56,7 +56,7 @@ const reducer = (state = orderByVotes(initialState), action) => {
     case 'VOTE':
       let newState = state.map(element => {
         if (element.id === action.data.id) {
-          element.votes += 1
+          return { ...element, votes: element.votes + 1 }
         }
         return element
       })

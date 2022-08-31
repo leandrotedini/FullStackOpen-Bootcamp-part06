@@ -16,7 +16,7 @@ export function cleanNotification () {
   }
 }
 
-const reducer = (state = 'initial state', action) => {
+const reducer = (state = '', action) => {
 
   switch (action.type) {
     case 'SHOW_NOTIFICATION':
