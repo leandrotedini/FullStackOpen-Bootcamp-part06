@@ -23,12 +23,16 @@ export function createAnecdote (content) {
   }
 }
 
-export function incrementVotes (id) {
-  return {
-    type: 'VOTE',
-    data:{
-      id
-    }
+export function incrementVotes (anecdote) {
+
+  return async dispatch => {
+    await anecdotesService.update(anecdote)
+    dispatch({
+      type: 'VOTE',
+      data: {
+        id: anecdote.id
+      }
+    })
   }
 }
 

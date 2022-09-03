@@ -3,6 +3,7 @@ import { incrementVotes } from '../reducers/anecdoteReducer'
 import { showNotification, cleanNotification } from '../reducers/notificationReducer'
 
 
+
 const Anecdote = ({ content, votes, id, handleClick}) => {
   return (
     <>
@@ -11,7 +12,7 @@ const Anecdote = ({ content, votes, id, handleClick}) => {
       </div>
       <div>
         has {votes}
-        <button onClick={() => handleClick(id, content)}>vote</button>
+        <button onClick={handleClick}>vote</button>
       </div>
       </>
   )
@@ -27,9 +28,9 @@ const Anecdotes = () => {
   }
   
 
-  const vote = (id, content) => {
-    dispatch(incrementVotes(id))
-    dispatch(showNotification(`you voted ${content}`))
+  const vote = (anecdote) => {
+    dispatch(incrementVotes(anecdote))
+    dispatch(showNotification(`you voted ${anecdote.content}`))
     setTimeout(() => dispatch(cleanNotification()), 5000)
   }
 
@@ -41,7 +42,7 @@ const Anecdotes = () => {
           content={anecdote.content}
           votes={anecdote.votes}
           id={anecdote.id}
-          handleClick={vote}
+          handleClick={() => vote(anecdote)}
         />
       </div>
     )}
