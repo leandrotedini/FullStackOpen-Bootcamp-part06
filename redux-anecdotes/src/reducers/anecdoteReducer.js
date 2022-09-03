@@ -1,3 +1,5 @@
+import anecdotesService from '../services/anecdotes'
+
 const orderByVotes = (anecdotes = []) => {
   
   return anecdotes.sort((a, b) => {
@@ -29,10 +31,13 @@ export function incrementVotes (id) {
   }
 }
 
-export function initializeAnecdotes (data) {
-  return {
-    type: 'INIT_ANECDOTE',
-    data
+export function initializeAnecdotes () {
+  return async dispatch => {
+    const anecdotes = await anecdotesService.getAll()
+    dispatch({
+      type: 'INIT_ANECDOTE',
+      data: anecdotes,
+    })
   }
 }
 
