@@ -14,11 +14,12 @@ const orderByVotes = (anecdotes = []) => {
 }
 
 export function createAnecdote (content) {
-  return {
-    type: 'NEW_ANECDOTE',
-    data:{
-      content
-    }
+  return async dispatch => {
+    const newAnecdote = await anecdotesService.createNew(content)
+    dispatch({
+      type: 'NEW_ANECDOTE',
+      data: newAnecdote
+    })
   }
 }
 
@@ -36,7 +37,7 @@ export function initializeAnecdotes () {
     const anecdotes = await anecdotesService.getAll()
     dispatch({
       type: 'INIT_ANECDOTE',
-      data: anecdotes,
+      data: anecdotes
     })
   }
 }
@@ -54,7 +55,7 @@ const reducer = (state = [], action) => {
       return orderByVotes(newState)
 
     case 'NEW_ANECDOTE':
-      return state.concat(action.data.content)
+      return state.concat(action.data)
 
     case 'INIT_ANECDOTE':
       return action.data
