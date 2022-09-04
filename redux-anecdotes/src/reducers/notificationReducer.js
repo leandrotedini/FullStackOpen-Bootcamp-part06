@@ -1,9 +1,12 @@
-export function showNotification (content) {
-  return {
-    type: 'SHOW_NOTIFICATION',
-    data:{
-      content
-    }
+export function showNotification (content, time) {
+  return async dispatch => {
+    dispatch({
+      type: 'SHOW_NOTIFICATION',
+      data:{
+        content
+      }
+    })
+    setTimeout(() => dispatch(cleanNotification()), time)
   }
 }
 
