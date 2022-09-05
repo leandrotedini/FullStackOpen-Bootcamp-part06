@@ -1,4 +1,9 @@
+let timeoutId
+
 export function showNotification (content, time) {
+  if (timeoutId) {
+    clearTimeout(timeoutId)
+  }
   return async dispatch => {
     dispatch({
       type: 'SHOW_NOTIFICATION',
@@ -6,11 +11,12 @@ export function showNotification (content, time) {
         content
       }
     })
-    setTimeout(() => dispatch(cleanNotification()), time)
+    timeoutId = setTimeout(() => dispatch(cleanNotification()), time)
   }
 }
 
 export function cleanNotification () {
+  timeoutId = 0
   return {
     type: 'CLEAN_NOTIFICATION',
     data:{
